@@ -20,8 +20,8 @@ import txt
 my_api_key = keys.google_api_key
 my_cse_id  = keys.google_search_engine_id
 
-def dosearch():
-    results = search.google_search("try to find god", my_api_key, my_cse_id, num=10) 
+def searchGoogle(startWords="try to find God"):
+    results = search.google_search(startWords, my_api_key, my_cse_id, num=10)
 
     for result in results['items']:
         print(result["link"])
