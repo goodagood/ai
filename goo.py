@@ -66,6 +66,6 @@ if __name__ == "__main__":
     print(' __name__ == "__main__"')
     #words()
 
-    fetchtxt("https://thelife.com/dont-know-how")
+    #fetchtxt("https://thelife.com/dont-know-how")
 
 

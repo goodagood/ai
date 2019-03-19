@@ -12,7 +12,7 @@ def google_search(search_term, api_key, cse_id, **kwargs):
   return res
 
 
-'''
+sampleUrl = '''
 https://www.everystudent.com/features/know-God.html
 https://www.youtube.com/watch?v=pgmiPXAwiLg
 https://www.huffingtonpost.com/steve-mcswain/how-to-find-god-the-five-_b_4660375.html
