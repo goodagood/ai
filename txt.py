@@ -1,7 +1,7 @@
 
-ta = """
+chinaHistory = """
 
-China history in 7 minutes
+China history in A FEW minutes
 
 China became the 2nd largest economy, how it becomes in long
 history?

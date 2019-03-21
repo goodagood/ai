@@ -26,27 +26,73 @@ def searchGoogle(startWords="try to find God"):
     for result in results['items']:
         print(result["link"])
         link = result["link"]
-        text = fetchtxt(link)
 
-        result['text'] = text
-        print(text[:100])
+        #text = fetchtxt(link)
+        #result['text'] = text
+        #print(text[:100])
 
     return results
 
 
+from googleapiclient.discovery import build
+def makeService():
+  service = build("customsearch", "v1", developerKey=my_api_key)
+  return service
+
+
+def makeCse():
+  service = makeService()
+  cse = service.cse
+  return cse
+
+def simpleSearch(search_term):
+    cse = makeCse()
+    res = cse().list(q=search_term, cx=my_cse_id).execute()
+    return res
+
+import random
+def randomSearch(search_term):
+    """give 10 random search
+
+    num= 10 not checked
+    """
+    cse = makeCse()
+    startNumber = random.randint(1,100)
+
+    # check if start work?
+    res = cse().list(q=search_term, cx=my_cse_id, start=startNumber, num=10).execute()
+    return res
+
+
 def fetchtxt(link):
-    r = requests.get(link)
+    try:
+        r = requests.get(link)
+    except:
+        return "PYTHON REQUEST EXCEPTION 2019 0321"
+
     soup = bs4.BeautifulSoup(r.text, 'html.parser')
     text = soup2txt.gettext(soup)
-    print(text[:100])
+    #print(text[:100])
     return text
 
 
-def words():
-    # try some algorithm
+def linkOrText(startWords="try to find God", what="link"):
 
-    print(txt.ta)
-    pass
+    #results = search.google_search(startWords, my_api_key, my_cse_id, num=10)
+    results = randomSearch(startWords)
+
+    for result in results['items']:
+        link = result["link"]
+
+        if what == "link":
+            yield link
+        else:
+            text = fetchtxt(link)
+            result['text'] = text
+            #print(text[:100])
+            yield text
+
+        pass
 
 
 links = '''
@@ -62,10 +108,44 @@ links = '''
     https://www.desiringgod.org/articles/why-are-so-many-christians-unhappy
     '''
 
+import digitxt
+
+
+def pageCheck():
+    for l in linkOrText(what="text"):
+        #print("\n", type(l), "\n")
+        print("\n",  "\n")
+        if type(l) == str:
+            try:
+                print(l[:500])
+                d = digitxt.digitizeText(l)
+                print ("--- -- - score : ", d)
+            except:
+                print("\n ooo \n ")
+        else:
+            print('got no string')
+
+
+
 if __name__ == "__main__":
     print(' __name__ == "__main__"')
     #words()
 
+    #searchGoogle()
+
     #fetchtxt("https://thelife.com/dont-know-how")
+
+
+    for l in linkOrText(what="text"):
+        print("\n", type(l), "\n")
+        if type(l) == str:
+            try:
+                print(l[:300])
+                d = digitxt.digitizeText(l)
+                print ("--- -- - score : ", d)
+            except:
+                print("\n ooo \n ")
+        else:
+            print('got no string')
 
 

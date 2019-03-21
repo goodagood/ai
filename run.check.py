@@ -11,6 +11,7 @@ file_list = [
         ]
 
 import watchFile
+import goo
 
 
 def run_check(filename=None):
@@ -22,23 +23,20 @@ def run_check(filename=None):
 
     condition = True
     while(True):
-        # do someting, and run
-        print('nothing done now, what?', condition)
+        #goo.searchGoogle() # as start point
+        goo.pageCheck() 
 
         try:
             condition = input("x for exit: ")
             if condition == "x":
                 break
-            else:
-                condition = False
         except:
-            print('got exception for condition 2019 0315 1654')
             condition = 33
 
         if monkey.changed():
             lines = monkey.readFile()
 
-        time.sleep(1)
+        #time.sleep(1)
 
         if condition:
             print('got condition', condition)
