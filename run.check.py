@@ -30,13 +30,16 @@ def run_check(filename=None):
             condition = input("x for exit: ")
             if condition == "x":
                 break
+            else:
+                condition = False
         except:
+            print('got exception for condition 2019 0315 1654')
             condition = 33
 
         if monkey.changed():
             lines = monkey.readFile()
 
-        #time.sleep(1)
+        time.sleep(1)
 
         if condition:
             print('got condition', condition)

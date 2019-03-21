@@ -5,8 +5,6 @@
 import select
 import sys
 
-print('Press enter to continue.', end='', flush=True)
-r, w, x = select.select([sys.stdin], [], [], 600)
 
 def waitUser(msg="\ninput here: ", timeout=2):
     print(msg, end='', flush=True)

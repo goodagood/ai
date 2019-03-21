@@ -11,4 +11,19 @@ def fetchtxt(link):
     print(text[:100])
 
 
+from nltk.tokenize import sent_tokenize
+
+def show1stP(text):
+    sent_list = sent_tokenize(text)
+    print(sent_list[0])
+    print("\n...\n")
+
+def show2ndP(text):
+    sent_list = sent_tokenize(text)
+    if len(sent_list) > 1:
+        print("\n...\n")
+        print(sent_list[1])
+        print("\n...\n")
+    else:
+        print(sent_list[0])
 

@@ -109,6 +109,7 @@ links = '''
     '''
 
 import digitxt
+import tool
 
 
 def pageCheck():
@@ -117,9 +118,11 @@ def pageCheck():
         print("\n",  "\n")
         if type(l) == str:
             try:
-                print(l[:500])
+                #print(l[:500])
+                tool.show1stP(l)
+
                 d = digitxt.digitizeText(l)
-                print ("--- -- - score : ", d)
+                print ("\n--- -- - score : ", d)
             except:
                 print("\n ooo \n ")
         else:
