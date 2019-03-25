@@ -2,10 +2,31 @@
 import os
 import re
 
+
 file_list = [
-        '/tmp/oo',
-        '~/tmp/oo'
+        '/tmp/rc.input',
+        '~/tmp/rc.input',
+        './rc.input'
         ]
+
+
+def getInputFile(file_list):
+    for fn in file_list:
+        if fn:
+            if os.path.exists(fn):
+                return fn
+
+    return None
+
+
+def readFirstLineOfInputFile(filename):
+    if not filename: return
+    with open(filename) as f :
+        r = f.read().strip()
+        l = r.split("\n")[0]
+        return l
+    return None
+
 
 class Monkey(object):
     def __init__(self, fileList=None):
@@ -17,11 +38,7 @@ class Monkey(object):
 
         if fileList:
             self.fileList = fileList
-
-        for fn in self.fileList:
-            if fn:
-                self.fileName = fn
-                break
+            self.fileName = getInputFile(fileList)
 
 
     def changed(self):
@@ -53,6 +70,8 @@ class Monkey(object):
 
 
     def readLines(self):
+        if self.changed: self.readFile()
+
         if self.fileContent:
             lines = self.fileContent.split("\n")
             self.lineList = list(
@@ -63,9 +82,21 @@ class Monkey(object):
             return None
 
 
+    def firstWords(self):
+        """
+        """
+        lines = self.readLines()
+        if lines and len(lines) > 0:
+            return lines[0]
+
+        return None
+
+
     def findStop(self):
         """find if there is a line with single word: stop
         """
+        if self.changed: self.readLines()
+
         for l in self.lineList:
             if re.match(r'^\s*stop\s*$', l, re.IGNORECASE):
                 return True
@@ -73,10 +104,6 @@ class Monkey(object):
         return False
 
 
-#
-def filein(fpath):
-    with open(fpath, 'r') as f:
-        return f.read()
 
 
 if __name__ == "__main__":
@@ -84,7 +111,7 @@ if __name__ == "__main__":
     if monkey.changed():
         s = monkey.readFile()
         l = monkey.readLines()
-        print(l)
+        print(monkey.firstWords())
     else:
         print('monkey NOT changed')
 

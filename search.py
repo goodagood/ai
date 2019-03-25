@@ -23,4 +23,6 @@ https://www.imdb.com/title/tt3455338/
 https://thelife.com/dont-know-how
 https://www.amazon.com/Just-Do-Something-Liberating-Approach/dp/0802458386
 https://www.desiringgod.org/articles/why-are-so-many-christians-unhappy
+https://en.wikipedia.org/wiki/Theism
+https://en.wikipedia.org/wiki/Deism
 '''

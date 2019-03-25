@@ -11,6 +11,17 @@ def fetchtxt(link):
     print(text[:100])
 
 
+import pydoc
+import sh
+def showLink(link):
+    if not link: return
+    dump = sh.w3m("-dump", link)
+    dump = str(dump)
+
+    pydoc.pager(dump)
+    pass
+
+
 from nltk.tokenize import sent_tokenize
 
 def show1stP(text):
@@ -28,21 +39,7 @@ def show2ndP(text):
         print(sent_list[0])
 
 
-# c
-def readFirstLineOfInputFile(filename):
-    if not filename: return
-    with open(filename) as f :
-        r = f.read().strip()
-        l = r.split("\n")[0]
-        return l
-    return None
+def fixFilePath(fpath):
+    return os.path.expanduser(fpath)
 
-import pydoc
-import sh
-def showLine(link):
-    if not link: return
-    dump = sh.w3m("-dump", link)
-    dump = str(dump)
 
-    pydoc.pager(dump)
-    pass

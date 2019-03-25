@@ -1,0 +1,2 @@
+
+religionTxt = '~/tmp/godwiki'
